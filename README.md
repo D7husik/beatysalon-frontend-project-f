@@ -212,6 +212,8 @@ src/
 **Alisher Dzhusuev**  
 University of Central Asia  
 Front-End Development Capstone Project - December 2025
+## Debug : ChatGpt
+## Architecture Assitent : Claude
 
 ---
 
