@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
     Search,
     Filter,
@@ -24,8 +23,7 @@ import { LoadingSpinner, ErrorMessage, ServiceCard, ServiceDetailModal } from '.
  * Home Page Component
  * Long-scroll landing page with multiple sections
  */
-const HomePage = () => {
-    const navigate = useNavigate();
+const HomePage = ({ onNavigate }) => {
     const { services, staff, loading, error, refreshAppointments } = useBooking();
     const { isDarkMode } = useTheme();
     const [searchTerm, setSearchTerm] = useState('');
@@ -116,10 +114,10 @@ const HomePage = () => {
                     </p>
                     <div className="hero-section__cta">
                         <button
-                            className="btn btn--primary btn--lg"
-                            onClick={() => navigate('/booking')}
+                            className="btn btn--gold btn--lg"
+                            onClick={() => onNavigate('booking')}
                         >
-                            Book Your Appointment
+                            Book Appointment
                         </button>
                         <button
                             className="btn btn--outline-dark btn--lg"
@@ -393,7 +391,7 @@ const HomePage = () => {
                                 <p className="team-card__bio">{member.bio}</p>
                                 <button
                                     className="team-card__btn"
-                                    onClick={() => navigate('/booking')}
+                                    onClick={() => onNavigate('booking')}
                                 >
                                     Book with {member.name.split(' ')[0]}
                                 </button>
@@ -459,11 +457,16 @@ const HomePage = () => {
                     </div>
 
                     <div className="contact-section__map">
-                        <div className="map-placeholder">
-                            <MapPin className="map-placeholder__icon" />
-                            <p>Interactive Map</p>
-                            <span>123 Beauty Boulevard, New York</span>
-                        </div>
+                        <iframe
+                            title="Suulu Salon Location"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304603!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1703545200000"
+                            width="100%"
+                            height="400"
+                            style={{ border: 0, borderRadius: '16px' }}
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                        ></iframe>
                     </div>
                 </div>
             </section>
@@ -473,7 +476,7 @@ const HomePage = () => {
                 <ServiceDetailModal
                     service={selectedServiceDetail}
                     onClose={() => setSelectedServiceDetail(null)}
-                    onBook={(service) => navigate('/booking', { state: { initialServices: [service] } })}
+                    onBook={(service) => onNavigate('booking', [service])}
                 />
             )}
         </div>
