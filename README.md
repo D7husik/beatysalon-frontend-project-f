@@ -1,60 +1,64 @@
-# 💅 Glam Salon Booking System
+# 💅 Suulu Beauty Salon - Booking System
 
-A modern, responsive salon booking application built with **React 18** and **Vite**. This single-page application (SPA) allows users to browse salon services, select specialists, and book appointments with real-time weather-based care tips.
+A modern, responsive salon booking application built with React that allows customers to browse services, book appointments, and manage their bookings.
 
-![React](https://img.shields.io/badge/React-18.2-61DAFB?logo=react)
-![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?logo=vite)
-![License](https://img.shields.io/badge/License-MIT-green)
+**🌐 Live Demo:** [https://beatysalon-frontend.vercel.app](https://beatysalon-frontend.vercel.app)
+
+**📁 Repository:** [https://github.com/D7husik/BeatySalon-FrontEnd-Project](https://github.com/D7husik/BeatySalon-FrontEnd-Project)
 
 ---
 
-## 🎯 Project Description
+## 📋 Project Description
 
-**Problem Solved:** Scheduling salon appointments traditionally requires phone calls or in-person visits. This application provides a seamless digital booking experience where customers can:
+Suulu Beauty Salon is a complex yet efficient application  that solves the problem of **salon appointment scheduling**. Customers can:
+- Browse available beauty services with search and filter
+- View detailed service information
+- Book appointments with preferred staff and time
+- Manage existing appointments (view, edit, cancel)
 
-- Browse available services with detailed descriptions and pricing
-- Select their preferred specialist
-- Choose convenient date and time slots
-- Receive personalized weather-based care tips after booking
+The application consumes REST APIs for data and uses localStorage for client-side persistence.
 
-### Main Features
+---
+
+## ✨ Main Features
 
 | Feature | Description |
 |---------|-------------|
-| 🔍 **Service Catalog** | Browse, search, and filter salon services by category |
-| 👤 **Staff Selection** | View specialist profiles with experience and specialties |
-| 📅 **Appointment Booking** | Select date/time with real-time availability |
-| ✅ **Booking Confirmation** | Complete booking with client details and validation |
-| 📱 **Appointment Management** | View, and cancel existing appointments |
-| 🌤️ **Weather Tips** | Personalized care recommendations based on live weather |
-| 🌙 **Dark/Light Theme** | Toggle between themes for comfortable viewing |
+| **Service Listing** | Grid display of all services with cards |
+| **Search & Filter** | Real-time search by name, filter by category |
+| **Pagination** | Navigate through services (6 per page) |
+| **Service Details** | Modal with full service information |
+| **Multi-step Booking** | 4-step wizard for appointment creation |
+| **Appointment Management** | View, edit, and cancel appointments |
+| **Staff Selection** | Choose preferred specialist |
+| **Time Conflict Prevention** | Prevents double-booking staff |
+| **Dark/Light Theme** | Toggle between themes |
+| **Weather Integration** | Beauty tips based on weather |
+| **Responsive Design** | Works on mobile, tablet, desktop |
 
 ---
 
-## 🔗 APIs Used
+## 🔌 APIs Used
 
-### 1. Mock Booking API (Primary)
-A fully-functional mock REST API with in-memory storage for salon data.
+### 1. Mock Booking API (Internal)
+- **Purpose:** CRUD operations for services, staff, appointments
+- **Documentation:** See `/API_DOCUMENTATION.md`
+- **Persistence:** localStorage (survives page refresh)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/services` | Get all services |
-| GET | `/services/:id` | Get service details |
-| GET | `/staff` | Get all staff members |
-| GET | `/staff/:id` | Get staff details |
-| GET | `/appointments` | Get all appointments |
-| POST | `/appointments` | Create new appointment |
-| PUT | `/appointments/:id` | Update appointment |
-| DELETE | `/appointments/:id` | Cancel appointment |
-
-📄 **Full API Documentation:** [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/services` | GET | List all services |
+| `/services/:id` | GET | Get service details |
+| `/staff` | GET | List all staff members |
+| `/appointments` | GET | List all appointments |
+| `/appointments` | POST | Create new appointment |
+| `/appointments/:id` | PUT | Update appointment |
+| `/appointments/:id` | DELETE | Cancel appointment |
 
 ### 2. Open-Meteo Weather API (External)
-Free weather API for real-time weather data - **no API key required**.
-
-- **Base URL:** `https://api.open-meteo.com/v1`
+- **Purpose:** Fetch real-time weather data for beauty tips
 - **Documentation:** [https://open-meteo.com/en/docs](https://open-meteo.com/en/docs)
-- **Usage:** Fetches current temperature, humidity, wind speed, UV index for weather-based care tips
+- **Note:** Free API, no API key required
 
 ---
 
@@ -63,20 +67,19 @@ Free weather API for real-time weather data - **no API key required**.
 | Technology | Purpose |
 |------------|---------|
 | **React 18** | UI library with functional components & hooks |
-| **Vite 5** | Build tool and development server |
-| **React Router** | Client-side routing for SPA navigation |
-| **Lucide React** | Modern icon library |
-| **CSS3** | Custom styling with Flexbox/Grid, dark mode support |
-| **ES6+** | Modern JavaScript (async/await, modules, destructuring) |
+| **React Router v6** | Client-side routing (URL-based navigation) |
+| **Vite** | Build tool and development server |
+| **Lucide React** | Icon library |
+| **CSS3** | Custom styling with CSS variables |
+| **localStorage** | Client-side data persistence |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- **Node.js** 18+ installed
-- **npm** or **yarn** package manager
+- Node.js 18+ 
+- npm or yarn
 
 ### Installation
 
@@ -84,7 +87,7 @@ Free weather API for real-time weather data - **no API key required**.
 # Clone the repository
 git clone https://github.com/D7husik/BeatySalon-FrontEnd-Project.git
 
-# Navigate to project directory
+# Navigate to project folder
 cd BeatySalon-FrontEnd-Project
 
 # Install dependencies
@@ -94,23 +97,7 @@ npm install
 npm run dev
 ```
 
-The app will open at `http://localhost:5173`
-
-### Environment Variables (Optional)
-
-Copy `.env.example` to `.env` for custom configuration:
-
-```bash
-cp .env.example .env
-```
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `VITE_API_BASE_URL` | `/api` | API base URL |
-| `VITE_USE_MOCK_API` | `true` | Enable mock API |
-| `VITE_DEBUG_MODE` | `false` | Enable debug logging |
-
-> **Note:** The Open-Meteo weather API requires no API key.
+The app opens at `http://localhost:5173`
 
 ### Build for Production
 
@@ -126,69 +113,51 @@ npm run preview
 ```
 src/
 ├── api/                 # API service layer
-│   ├── config.js        # API configuration & endpoints
-│   ├── bookingApi.js    # Booking CRUD operations
+│   ├── bookingApi.js    # CRUD operations (with localStorage)
 │   ├── weatherApi.js    # Open-Meteo weather integration
+│   ├── config.js        # API configuration & endpoints
 │   └── index.js         # API exports
 ├── components/          # Reusable UI components
-│   ├── common/          # Generic components (LoadingSpinner, ErrorMessage)
-│   ├── services/        # Service listing & details
-│   ├── staff/           # Staff cards & selection
-│   ├── booking/         # Booking form, WeatherTips
+│   ├── common/          # LoadingSpinner, ErrorMessage
+│   ├── booking/         # AppointmentCard, TimeSlot, EditModal
+│   ├── services/        # ServiceCard, ServiceDetailModal
+│   ├── staff/           # StaffCard
 │   └── layout/          # Navbar, Footer
-├── context/             # React Context providers
-├── data/                # Mock data (services, staff)
-├── hooks/               # Custom React hooks
+├── context/             # React Context (BookingContext, ThemeContext)
+├── hooks/               # Custom hooks (useBooking, useTheme)
 ├── pages/               # Page components
-│   ├── HomePage.jsx
-│   ├── BookingPage.jsx
-│   ├── ConfirmationPage.jsx
-│   └── AppointmentsPage.jsx
+│   ├── HomePage.jsx     # Landing page with services
+│   ├── BookingPage.jsx  # Multi-step booking wizard
+│   ├── ConfirmationPage.jsx # Booking confirmation
+│   └── MyAppointmentsPage.jsx # Appointment management
 ├── utils/               # Utility functions
-│   ├── formatUtils.js   # Date formatting
-│   └── weatherTipsUtils.js  # Weather tip generation
-├── styles/              # CSS stylesheets
-│   └── index.css        # Main styles with dark mode
-├── App.jsx              # Root component with routing
-└── main.jsx             # Application entry point
+│   ├── dateUtils.js     # Date formatting, time slots
+│   ├── validationUtils.js # Form validation
+│   └── weatherTipsUtils.js # Weather-based tips
+└── styles/              # CSS styles with variables
 ```
 
 ---
 
-## ✨ Feature Implementation Details
-
-### API Integration
-- **Centralized configuration** in `src/api/config.js`
-- **Async/await** with `fetch` for all API calls
-- **Loading states** with spinners during data fetch
-- **Error handling** with user-friendly messages and retry options
-- **Data caching** in React state to minimize API calls
-
-### CRUD Operations
-- **Create:** Book new appointments via multi-step form
-- **Read:** Display services, staff, and appointment lists
-- **Delete:** Cancel appointments with confirmation
-
-### Form Validation
-- Required field validation (name, phone, date, time)
-- Phone number format validation (integers only)
-- Email format validation
-- Real-time error messages next to fields
-
-### Responsive Design
-- Mobile-first approach
-- Flexbox and CSS Grid layouts
-- Breakpoints: Mobile (< 768px), Tablet (768-1024px), Desktop (> 1024px)
-- Touch-friendly buttons and navigation
-
----
 
 ## ⚠️ Known Limitations
 
-1. **Mock API Persistence:** Data resets on page refresh (in-memory storage)
-2. **Weather Location:** Fixed to New York coordinates (customizable in code)
-3. **Payment Integration:** Not implemented (mockup only)
-4. **User Authentication:** No login system (demo purposes)
+1. **Mock API** - Uses in-memory API with localStorage persistence (no real backend)
+2. **Single Location** - Weather API hardcoded for one location
+3. **Browser Storage** - Data clears if user clears browser cache
+
+---
+
+
+---
+## Challenges & Solutions
+| Challenge | Solution |
+|------------|---------|
+| **No backend ** | Mock API + localStorage |
+| **Double booking** |Time conflict algorithm |
+| **State management** | React Context API |
+| **Routing** | React Router v6 |
+
 
 ---
 
@@ -196,57 +165,56 @@ src/
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                      React App                          │
+│                     React App                            │
 ├─────────────────────────────────────────────────────────┤
-│  Pages (HomePage, BookingPage, ConfirmationPage, etc.)  │
-├─────────────────────────────────────────────────────────┤
-│  Components (ServiceCard, StaffCard, BookingForm, etc.) │
-├─────────────────────────────────────────────────────────┤
-│  Hooks (useBooking, useServices)  │  Context (Theme)    │
-├─────────────────────────────────────────────────────────┤
-│                    API Layer                            │
-│  ┌─────────────────┐    ┌─────────────────────────┐    │
-│  │  bookingApi.js  │    │    weatherApi.js        │    │
-│  │  (Mock CRUD)    │    │    (Open-Meteo)         │    │
-│  └─────────────────┘    └─────────────────────────┘    │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐    │
+│  │ HomePage │  │Booking  │  │Confirm  │  │Appoint- │    │
+│  │         │  │Page     │  │ation    │  │ments    │    │
+│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘    │
+│       │            │            │            │          │
+│  ┌────┴────────────┴────────────┴────────────┴────┐    │
+│  │              React Router v6                    │    │
+│  └────────────────────┬───────────────────────────┘    │
+│                       │                                 │
+│  ┌────────────────────┴───────────────────────────┐    │
+│  │           BookingContext + ThemeContext         │    │
+│  └────────────────────┬───────────────────────────┘    │
+│                       │                                 │
+│  ┌────────────────────┴───────────────────────────┐    │
+│  │                  API Layer                      │    │
+│  │   ┌──────────────┐    ┌──────────────┐         │    │
+│  │   │ bookingApi   │    │ weatherApi   │         │    │
+│  │   │ (localStorage)│    │ (Open-Meteo) │         │    │
+│  │   └──────────────┘    └──────────────┘         │    │
+│  └─────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────┘
 ```
+```
 
+┌─────────────┐     Request      ┌─────────────┐
+│   React     │ ──────────────▶  │    API      │
+│  Component  │                  │   Layer     │
+│             │ ◀──────────────  │             │
+└─────────────┘     Response     └─────────────┘
+                                       │
+                                       ▼
+                                ┌─────────────┐
+                                │ localStorage │
+                                │  (Storage)  │
+                                └─────────────┘
+
+
+```
 ---
 
-## 🎓 Technical Challenges & Solutions
-
-| Challenge | Solution |
-|-----------|----------|
-| **State persistence** | Used `localStorage` to persist appointments across sessions |
-| **API error handling** | Implemented fallback data and retry mechanisms |
-| **Weather integration** | Selected Open-Meteo (free, no-key API) with WMO weather code mapping |
-| **Form validation** | Built custom validation with real-time feedback |
-| **Dark mode styling** | CSS custom properties with `[data-theme]` selector |
-
----
-
-## 📺 Live Demo
-
-🌐 **Deployed URL:** [Vercel Deployment](https://beaty-salon-front-end-project.vercel.app/)
-
-### Demo Flow
-1. **Home Page** → Browse services and about section
-2. **Services** → Filter by category, view details
-3. **Book Now** → Select services → Choose staff → Pick date/time → Enter details
-4. **Confirmation** → View booking summary with weather tips
-5. **Appointments** → View and manage bookings
-
----
-
-## 📝 License
-
-© 2025 Glam Salon. All rights reserved.
-
----
-
-## 👤 Author
+## 👩‍💻 Author
 
 **Alisher Dzhusuev**  
 University of Central Asia  
-Front-End Capstone Project - December 2025
+Front-End Development Capstone Project - December 2025
+
+---
+
+## 📄 License
+
+© 2025 Suulu Beauty Salon. All rights reserved.
